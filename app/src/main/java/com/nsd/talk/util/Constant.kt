@@ -1,4 +1,4 @@
-package com.nsd.talk
+package com.nsd.talk.util
 
 object Constant {
     const val LEFT_TALK = 0

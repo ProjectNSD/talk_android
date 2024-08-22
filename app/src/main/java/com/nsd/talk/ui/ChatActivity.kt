@@ -1,4 +1,4 @@
-package com.nsd.talk
+package com.nsd.talk.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

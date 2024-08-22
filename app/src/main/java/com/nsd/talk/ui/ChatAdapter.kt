@@ -1,13 +1,14 @@
-package com.nsd.talk
+package com.nsd.talk.ui
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import com.nsd.talk.R
 import com.nsd.talk.databinding.ItemLeftChatBinding
 import com.nsd.talk.databinding.ItemRightChatBinding
+import com.nsd.talk.util.Constant
 import java.lang.RuntimeException
 
 class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

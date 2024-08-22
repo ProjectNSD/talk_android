@@ -1,4 +1,4 @@
-package com.nsd.talk
+package com.nsd.talk.data
 
 import retrofit2.Call
 import retrofit2.http.Body

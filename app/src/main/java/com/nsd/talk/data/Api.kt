@@ -1,23 +1,21 @@
 package com.nsd.talk.data
 
-import retrofit2.Call
-import retrofit2.http.Body
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface Api {
 
     @GET("v1/msgRev/{userId}/{msg}")
     fun getMsg(
-        @Path("userId") id : String,
-        @Path("msg") msg : String
-    ) : Call<String>
+        @Path("userId") id: String,
+        @Path("msg") msg: String
+    ): Response<String>
 
     @POST("v1/msgSend")
-    fun postSendMsg(
-        @Path("userId") id : String,
-        @Path("msg") msg : String
-    ) : Call<String>
+    suspend fun postSendMsg(
+        @Path("userId") id: String,
+        @Path("msg") msg: String
+    ): Response<String>
 }

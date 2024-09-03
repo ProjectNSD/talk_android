@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="nevada">#FF686C6D</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="mystic">#FFE4E9EF</color>
+    <color name="woodsmoke">#FF111113</color>
 </resources>

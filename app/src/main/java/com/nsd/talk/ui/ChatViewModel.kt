@@ -15,7 +15,7 @@ class ChatViewModel : ViewModel() {
         viewModelScope.launch {
             val response = messageRepository.sendMessage("")
             if (response.isSuccessful) {
-                _sendMessageResponse.postValue(response.body())
+                _sendMessageResponse.postValue(response.body().toString())
             }
         }
     }

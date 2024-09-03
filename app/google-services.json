@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "568575716555",
+    "project_id": "projectnsd-23371",
+    "storage_bucket": "projectnsd-23371.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:568575716555:android:b0d0c76d03983a67e8bf4e",
+        "android_client_info": {
+          "package_name": "com.nsd.talk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBis1u-m_UdW0apbyTHZ3QC5xdbE7IQpM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

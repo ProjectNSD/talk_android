@@ -11,7 +11,7 @@ class MainViewModel : ViewModel() {
     private val messageRepository = MessageRepository()
     fun register(token: String) {
         viewModelScope.launch {
-            val model = RegisterModel("01000000000", token)
+            val model = RegisterModel("test", "01000000000", token)
             Log.d("mainViewModel", "registerModel: $model")
             val response = messageRepository.register(model)
             Log.d("MainViewModel", "response: ${token}")

@@ -1,4 +1,4 @@
-package com.nsd.talk.ui
+package com.nsd.talk.ui.chat
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

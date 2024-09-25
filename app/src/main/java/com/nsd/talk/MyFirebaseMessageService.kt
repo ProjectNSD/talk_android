@@ -7,7 +7,7 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.nsd.talk.ui.MainActivity
+import com.nsd.talk.ui.main.MainActivity
 
 // https://velog.io/@leeyjwinter/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-Firebase-FCM
 class MyFirebaseMessageService : FirebaseMessagingService() {

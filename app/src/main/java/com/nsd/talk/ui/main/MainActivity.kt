@@ -1,4 +1,4 @@
-package com.nsd.talk.ui
+package com.nsd.talk.ui.main
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -14,6 +14,9 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import com.nsd.talk.R
 import com.nsd.talk.databinding.ActivityMainBinding
+import com.nsd.talk.ui.chatroom.ChatRoomFragment
+import com.nsd.talk.ui.setting.SettingsFragment
+import com.nsd.talk.ui.friend.FriendFragment
 
 class MainActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels()

@@ -1,4 +1,4 @@
-package com.nsd.talk.ui
+package com.nsd.talk.ui.main
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

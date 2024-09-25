@@ -1,4 +1,4 @@
-package com.nsd.talk.ui
+package com.nsd.talk.ui.setting
 
 import android.os.Bundle
 import androidx.preference.PreferenceFragmentCompat

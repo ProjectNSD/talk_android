@@ -1,4 +1,4 @@
-package com.nsd.talk.ui
+package com.nsd.talk.ui.friend
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle

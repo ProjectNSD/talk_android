@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                     return@setOnItemSelectedListener true
                 }
                 R.id.action_chat -> {
-                    replaceFragment(ChatFragment())
+                    replaceFragment(ChatRoomFragment())
                     return@setOnItemSelectedListener true
                 }
                 R.id.action_setting -> {

@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setupUi()
-        isFirstStartApp()
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
@@ -47,14 +46,6 @@ class MainActivity : AppCompatActivity() {
         })
 
         createNotificationChannel("1111", "fcm")
-    }
-
-    private fun isFirstStartApp() {
-        if(!viewModel.isFirstStartApp(applicationContext)) {
-            viewModel.setFirstStartAppPreference(applicationContext)
-            val intent = Intent(this@MainActivity, RegisterActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     private fun setupUi() = with(binding) {

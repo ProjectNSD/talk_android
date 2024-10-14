@@ -1,9 +1,11 @@
 package com.nsd.talk.ui.main
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nsd.talk.data.MessageRepository
+import com.nsd.talk.data.SharedPreferenceRepository
 import com.nsd.talk.model.RegisterModel
 import kotlinx.coroutines.launch
 
@@ -19,5 +21,15 @@ class MainViewModel : ViewModel() {
                 Log.d("MainViewModel", "token Successful")
             }
         }
+    }
+
+    fun isFirstStartApp(context: Context): Boolean {
+        val repository = SharedPreferenceRepository(context)
+        return repository.isTrue("FIRST_START")
+    }
+
+    fun setFirstStartAppPreference(context: Context) {
+        val repository = SharedPreferenceRepository(context)
+        repository.setBooleanValue("FIRST_START", true)
     }
 }

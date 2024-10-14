@@ -17,4 +17,10 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <string name="profile_name">이름</string>
+    <string name="register_title">회원 가입</string>
+    <string name="register_name">이름</string>
+    <string name="register_phone_number">폰 번호</string>
+    <string name="register">회원 가입</string>
 </resources>

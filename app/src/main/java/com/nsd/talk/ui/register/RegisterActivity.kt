@@ -36,7 +36,6 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun isFirstStartApp() {
         if (viewModel.isFirstStartApp(applicationContext)) {
-            viewModel.setFirstStartAppPreference(applicationContext)
             val intent = Intent(this@RegisterActivity, MainActivity::class.java)
             startActivity(intent)
         }
@@ -105,6 +104,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun register() {
         firebaseSetUp()
+        viewModel.setFirstStartAppPreference(applicationContext)
         val intent = Intent(this@RegisterActivity, MainActivity::class.java)
         startActivity(intent)
     }

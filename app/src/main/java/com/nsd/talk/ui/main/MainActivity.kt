@@ -29,23 +29,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setupUi()
-
-        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-            if (!task.isSuccessful) {
-                Log.w("[MainActivity]", "Fetching FCM registration token failed", task.exception)
-                return@OnCompleteListener
-            }
-
-            // Get new FCM registration token
-            val token = task.result
-
-            // Log and toast
-            val msg = token
-            Log.d("MainActivity", msg)
-            viewModel.register(msg)
-        })
-
-        createNotificationChannel("1111", "fcm")
     }
 
     private fun setupUi() = with(binding) {
@@ -70,17 +53,6 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.add(R.id.fl_main, FriendFragment())
         fragmentTransaction.commit()
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    // Notification 수신을 위한 체널 추가
-    private fun createNotificationChannel(id: String, name: String) {
-        val importance = NotificationManager.IMPORTANCE_DEFAULT
-        val channel = NotificationChannel(id, name, importance)
-
-        val notificationManager: NotificationManager =
-            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.createNotificationChannel(channel)
     }
 
     private fun replaceFragment(fragment: Fragment) {

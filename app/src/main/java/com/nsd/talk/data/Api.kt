@@ -1,5 +1,7 @@
 package com.nsd.talk.data
 
+import com.nsd.talk.model.PhoneNumbersModel
+import com.nsd.talk.model.RegisterCheckModel
 import com.nsd.talk.model.RegisterModel
 import com.nsd.talk.model.SuccessModel
 import retrofit2.Response
@@ -25,5 +27,15 @@ interface Api {
     @POST("v1/register")
     suspend fun registerToken(
         @Body token: RegisterModel
-    ):Response<SuccessModel>
+    ): Response<SuccessModel>
+
+    @POST("v1/checkNumbers")
+    suspend fun registerCheck(
+        @Body phoneNumbers: PhoneNumbersModel
+    ): Response<List<Boolean>>
+
+    @GET("v1/image/{phoneNumber}")
+    suspend fun getProfileImage(
+        @Path("phoneNumber") phoneNumber: String,
+    ): Response<String>
 }

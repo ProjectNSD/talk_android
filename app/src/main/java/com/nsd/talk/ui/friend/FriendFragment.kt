@@ -26,7 +26,9 @@ class FriendFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(FriendViewModel::class.java)
-        // TODO: Use the ViewModel
+        viewModel.getContact(requireContext())
+        viewModel.registerCheck()
+        viewModel.getProfile("01012345678")
     }
 
 }

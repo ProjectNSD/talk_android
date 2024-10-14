@@ -36,6 +36,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun isFirstStartApp() {
         if (viewModel.isFirstStartApp(applicationContext)) {
+            createNotificationChannel("1111", "fcm")
             val intent = Intent(this@RegisterActivity, MainActivity::class.java)
             startActivity(intent)
         }

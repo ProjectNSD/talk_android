@@ -106,6 +106,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun register() {
         firebaseSetUp()
         viewModel.setFirstStartAppPreference(applicationContext)
+        viewModel.setUserNameNumber(applicationContext)
         val intent = Intent(this@RegisterActivity, MainActivity::class.java)
         startActivity(intent)
     }

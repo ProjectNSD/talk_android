@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.nsd.talk.data.MessageRepository
 import com.nsd.talk.data.SharedPreferenceRepository
 import com.nsd.talk.model.RegisterModel
+import com.nsd.talk.util.Constant
 import kotlinx.coroutines.launch
 
 class RegisterViewModel : ViewModel() {
@@ -34,5 +35,11 @@ class RegisterViewModel : ViewModel() {
     fun setFirstStartAppPreference(context: Context) {
         val repository = SharedPreferenceRepository(context)
         repository.setBooleanValue("FIRST_START", true)
+    }
+
+    fun setUserNameNumber(context: Context) {
+        val repository = SharedPreferenceRepository(context)
+        repository.setStringValue(Constant.PHONE_NUMBER, phoneNumber)
+        repository.setStringValue(Constant.NAME, name)
     }
 }

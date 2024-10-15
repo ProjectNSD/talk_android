@@ -4,6 +4,7 @@ import android.content.ContentResolver
 import android.content.Context
 import android.provider.ContactsContract
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nsd.talk.data.ImageRepository
@@ -17,6 +18,9 @@ class FriendViewModel : ViewModel() {
     private val imageRepository = ImageRepository()
     private val phoneNumbersRepository = PhoneNumbersRepository()
     private val contacts = mutableListOf<ContactModel>()
+    val profileLiveData: MutableLiveData<String> by lazy {
+        MutableLiveData<String>()
+    }
     fun registerCheck() {
         viewModelScope.launch {
             val phoneNumberContacts = mutableListOf<String>()
@@ -59,6 +63,7 @@ class FriendViewModel : ViewModel() {
             val response = imageRepository.getProfileImage(phoneNumber)
             if (response.isSuccessful) {
                 Log.d("tag", "image url: ${response.body()}")
+                profileLiveData.value = response.body()?.imageUrl
             }
         }
     }

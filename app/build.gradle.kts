@@ -71,4 +71,6 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-messaging-ktx:24.0.1")
+    // glide
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
 }

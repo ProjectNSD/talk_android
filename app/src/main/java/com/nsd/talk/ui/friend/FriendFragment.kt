@@ -32,7 +32,7 @@ class FriendFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(FriendViewModel::class.java)
         viewModel.getContact(requireContext())
         viewModel.registerCheck()
-        viewModel.getProfile("01012345678")
+        viewModel.getProfile(requireContext())
         viewModel.profileLiveData.observe(viewLifecycleOwner, Observer { profile ->
             if (profile.isNotBlank() || profile.isNotEmpty()) {
                 Glide

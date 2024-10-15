@@ -9,8 +9,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nsd.talk.data.ImageRepository
 import com.nsd.talk.data.PhoneNumbersRepository
+import com.nsd.talk.data.SharedPreferenceRepository
 import com.nsd.talk.model.ContactModel
 import com.nsd.talk.model.PhoneNumbersModel
+import com.nsd.talk.util.Constant
 import kotlinx.coroutines.launch
 
 
@@ -58,7 +60,9 @@ class FriendViewModel : ViewModel() {
         cursor!!.close()
     }
 
-    fun getProfile(phoneNumber: String) {
+    fun getProfile(context: Context) {
+        val prefRepository = SharedPreferenceRepository(context)
+        val phoneNumber = prefRepository.getStringValue(Constant.PHONE_NUMBER)
         viewModelScope.launch {
             val response = imageRepository.getProfileImage(phoneNumber)
             if (response.isSuccessful) {

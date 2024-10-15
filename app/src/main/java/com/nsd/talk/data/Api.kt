@@ -1,5 +1,6 @@
 package com.nsd.talk.data
 
+import com.nsd.talk.model.ImageModel
 import com.nsd.talk.model.PhoneNumbersModel
 import com.nsd.talk.model.RegisterCheckModel
 import com.nsd.talk.model.RegisterModel
@@ -37,5 +38,5 @@ interface Api {
     @GET("v1/image/{phoneNumber}")
     suspend fun getProfileImage(
         @Path("phoneNumber") phoneNumber: String,
-    ): Response<String>
+    ): Response<ImageModel>
 }

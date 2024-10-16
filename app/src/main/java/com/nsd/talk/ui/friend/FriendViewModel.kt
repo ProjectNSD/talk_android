@@ -21,7 +21,6 @@ class FriendViewModel : ViewModel() {
     private val imageRepository = ImageRepository()
     private val phoneNumbersRepository = PhoneNumbersRepository()
     private val contacts = mutableListOf<UserContactModel>()
-    private lateinit var serverContacts: List<ServerContactModel>
     val profileLiveData: MutableLiveData<String> by lazy {
         MutableLiveData<String>()
     }
@@ -77,6 +76,4 @@ class FriendViewModel : ViewModel() {
             }
         }
     }
-
-    fun getServerContact() = serverContacts
 }

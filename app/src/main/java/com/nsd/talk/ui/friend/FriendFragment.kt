@@ -7,11 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.nsd.talk.R
 import com.nsd.talk.databinding.FragmentFriendBinding
 
 class FriendFragment : Fragment() {
+    private val friendAdapter by lazy { FriendAdapter() }
+
     companion object {
         fun newInstance() = FriendFragment()
     }
@@ -29,18 +31,25 @@ class FriendFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(FriendViewModel::class.java)
+        viewModel = ViewModelProvider(this)[FriendViewModel::class.java]
         viewModel.getContact(requireContext())
         viewModel.registerCheck()
         viewModel.getProfile(requireContext())
         viewModel.profileLiveData.observe(viewLifecycleOwner, Observer { profile ->
-            if (profile.isNotBlank() || profile.isNotEmpty()) {
+            if (profile != null) {
                 Glide
                     .with(this@FriendFragment)
                     .load(profile)
                     .centerCrop()
                     .into(binding.ivProfile);
             }
+        })
+
+        viewModel.serverContactsLiveData.observe(viewLifecycleOwner, Observer { contacts ->
+            friendAdapter.setContacts(contacts)
+            binding.rcvFriend.adapter = friendAdapter
+            binding.rcvFriend.setHasFixedSize(false)
+            binding.rcvFriend.layoutManager = LinearLayoutManager(requireContext())
         })
     }
 

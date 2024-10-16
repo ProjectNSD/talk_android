@@ -4,6 +4,7 @@ import com.nsd.talk.model.ImageModel
 import com.nsd.talk.model.PhoneNumbersModel
 import com.nsd.talk.model.RegisterCheckModel
 import com.nsd.talk.model.RegisterModel
+import com.nsd.talk.model.ServerContactModel
 import com.nsd.talk.model.SuccessModel
 import retrofit2.Response
 import retrofit2.http.Body
@@ -33,7 +34,7 @@ interface Api {
     @POST("v1/checkNumbers")
     suspend fun registerCheck(
         @Body phoneNumbers: PhoneNumbersModel
-    ): Response<List<Boolean>>
+    ): Response<List<ServerContactModel>>
 
     @GET("v1/image/{phoneNumber}")
     suspend fun getProfileImage(

@@ -10,8 +10,9 @@ import androidx.lifecycle.viewModelScope
 import com.nsd.talk.data.ImageRepository
 import com.nsd.talk.data.PhoneNumbersRepository
 import com.nsd.talk.data.SharedPreferenceRepository
-import com.nsd.talk.model.ContactModel
+import com.nsd.talk.model.UserContactModel
 import com.nsd.talk.model.PhoneNumbersModel
+import com.nsd.talk.model.ServerContactModel
 import com.nsd.talk.util.Constant
 import kotlinx.coroutines.launch
 
@@ -19,9 +20,13 @@ import kotlinx.coroutines.launch
 class FriendViewModel : ViewModel() {
     private val imageRepository = ImageRepository()
     private val phoneNumbersRepository = PhoneNumbersRepository()
-    private val contacts = mutableListOf<ContactModel>()
+    private val contacts = mutableListOf<UserContactModel>()
+    private lateinit var serverContacts: List<ServerContactModel>
     val profileLiveData: MutableLiveData<String> by lazy {
         MutableLiveData<String>()
+    }
+    val serverContactsLiveData: MutableLiveData<List<ServerContactModel>> by lazy {
+        MutableLiveData<List<ServerContactModel>>()
     }
     fun registerCheck() {
         viewModelScope.launch {
@@ -33,6 +38,7 @@ class FriendViewModel : ViewModel() {
             val response = phoneNumbersRepository.registerCheck(model)
             Log.d("FriendViewModel", "response: ${response}")
             if (response.isSuccessful) {
+                serverContactsLiveData.value = response.body()!!
                 Log.d("FriendViewModel", "registerCheck")
             }
         }
@@ -54,7 +60,7 @@ class FriendViewModel : ViewModel() {
                 val name = cursor.getString(nameIndex)
                 var number = cursor.getString(numberIndex)
                 number = number.replace("-", "")
-                contacts.add(ContactModel(name, number))
+                contacts.add(UserContactModel(name, number))
             }
         }
         cursor!!.close()
@@ -67,8 +73,10 @@ class FriendViewModel : ViewModel() {
             val response = imageRepository.getProfileImage(phoneNumber)
             if (response.isSuccessful) {
                 Log.d("tag", "image url: ${response.body()}")
-                profileLiveData.value = response.body()?.imageUrl
+                profileLiveData.value = response.body()?.profileUrl
             }
         }
     }
+
+    fun getServerContact() = serverContacts
 }

@@ -1,4 +1,4 @@
-package com.nsd.talk
+package com.nsd.talk.data.firebase
 
 import android.app.NotificationManager
 import android.app.PendingIntent

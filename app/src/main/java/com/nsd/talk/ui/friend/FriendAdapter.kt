@@ -1,6 +1,7 @@
 package com.nsd.talk.ui.friend
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -9,7 +10,7 @@ import com.nsd.talk.R
 import com.nsd.talk.databinding.ItemFriendBinding
 import com.nsd.talk.model.ServerContactModel
 
-class FriendAdapter : RecyclerView.Adapter<FriendAdapter.FriendViewHolder>() {
+class FriendAdapter(val listenr: OnItemClickListener) : RecyclerView.Adapter<FriendAdapter.FriendViewHolder>() {
     private var contacts: List<ServerContactModel> = ArrayList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendViewHolder {
         return FriendViewHolder(
@@ -24,8 +25,15 @@ class FriendAdapter : RecyclerView.Adapter<FriendAdapter.FriendViewHolder>() {
 
     override fun getItemCount(): Int = contacts.size
 
+    interface OnItemClickListener {
+        fun onClick(v: View, position: Int)
+    }
+
     override fun onBindViewHolder(holder: FriendViewHolder, position: Int) {
         with(holder.binding) {
+            layoutMain.setOnClickListener {
+                listenr.onClick(layoutMain, position)
+            }
             tvName.text = contacts[position].name
             Glide
                 .with(ivProfile.context)

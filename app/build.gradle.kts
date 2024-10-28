@@ -73,4 +73,9 @@ dependencies {
     implementation("com.google.firebase:firebase-messaging-ktx:24.0.1")
     // glide
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+    // room
+    implementation("androidx.room:room-runtime:2.4.3")
+    annotationProcessor("androidx.room:room-compiler:2.4.3")
+    kapt("androidx.room:room-compiler:2.4.3")
+    implementation("androidx.room:room-ktx:2.4.3")
 }

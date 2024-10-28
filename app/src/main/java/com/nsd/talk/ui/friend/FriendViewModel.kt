@@ -10,24 +10,29 @@ import androidx.lifecycle.viewModelScope
 import com.nsd.talk.data.ImageRepository
 import com.nsd.talk.data.PhoneNumbersRepository
 import com.nsd.talk.data.SharedPreferenceRepository
+import com.nsd.talk.data.db.contact.ContactDatabase
 import com.nsd.talk.model.UserContactModel
 import com.nsd.talk.model.PhoneNumbersModel
 import com.nsd.talk.model.ServerContactModel
 import com.nsd.talk.util.Constant
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class FriendViewModel : ViewModel() {
     private val imageRepository = ImageRepository()
     private val phoneNumbersRepository = PhoneNumbersRepository()
     private val contacts = mutableListOf<UserContactModel>()
-    private lateinit var serverContacts: List<ServerContactModel>
+    private var contactDB: ContactDatabase? = null
     val profileLiveData: MutableLiveData<String> by lazy {
         MutableLiveData<String>()
     }
     val serverContactsLiveData: MutableLiveData<List<ServerContactModel>> by lazy {
         MutableLiveData<List<ServerContactModel>>()
     }
+
     fun registerCheck() {
         viewModelScope.launch {
             val phoneNumberContacts = mutableListOf<String>()
@@ -44,7 +49,13 @@ class FriendViewModel : ViewModel() {
         }
     }
 
-    fun getContact(context: Context) {
+    suspend fun hasContact(context: Context): Boolean = withContext(Dispatchers.IO) {
+        contactDB = ContactDatabase.getInstance(context)
+        val contactEntity = contactDB!!.contactDao().getAll()
+        return@withContext contactEntity.isNotEmpty()
+    }
+
+    fun getUserContact(context: Context) {
         val resolver: ContentResolver = context.contentResolver
         val phoneUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI
         val projection = arrayOf(
@@ -66,6 +77,16 @@ class FriendViewModel : ViewModel() {
         cursor!!.close()
     }
 
+    fun getDBContact(context: Context) {
+        contactDB = ContactDatabase.getInstance(context)
+        val contactEntity = contactDB!!.contactDao().getAll()
+        val contacts = mutableListOf<ServerContactModel>()
+        contactEntity.forEach { entity ->
+            contacts.add(ServerContactModel(entity.name, entity.phoneNumber, entity.profile))
+        }
+        serverContactsLiveData.value = contacts
+    }
+
     fun getProfile(context: Context) {
         val prefRepository = SharedPreferenceRepository(context)
         val phoneNumber = prefRepository.getStringValue(Constant.PHONE_NUMBER)
@@ -77,6 +98,4 @@ class FriendViewModel : ViewModel() {
             }
         }
     }
-
-    fun getServerContact() = serverContacts
 }

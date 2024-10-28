@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nsd.talk.data.MessageRepository
+import com.nsd.talk.data.repository.api.MessageRepository
 import kotlinx.coroutines.launch
 
 class ChatViewModel : ViewModel() {

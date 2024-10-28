@@ -1,4 +1,4 @@
-package com.nsd.talk.data
+package com.nsd.talk.data.repository.preference
 
 import android.content.Context
 

@@ -1,4 +1,4 @@
-package com.nsd.talk.data
+package com.nsd.talk.data.retrofit
 
 import com.nsd.talk.model.ImageModel
 import com.nsd.talk.model.PhoneNumbersModel

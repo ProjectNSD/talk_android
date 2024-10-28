@@ -1,4 +1,4 @@
-package com.nsd.talk.data
+package com.nsd.talk.data.retrofit
 
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient

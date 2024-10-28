@@ -1,5 +1,7 @@
-package com.nsd.talk.data
+package com.nsd.talk.data.repository.api
 
+import com.nsd.talk.data.retrofit.Api
+import com.nsd.talk.data.retrofit.RetrofitInstance
 import com.nsd.talk.model.RegisterModel
 import com.nsd.talk.model.SuccessModel
 import retrofit2.Response

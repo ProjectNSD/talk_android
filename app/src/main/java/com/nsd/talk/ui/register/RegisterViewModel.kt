@@ -4,8 +4,8 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nsd.talk.data.MessageRepository
-import com.nsd.talk.data.SharedPreferenceRepository
+import com.nsd.talk.data.repository.api.MessageRepository
+import com.nsd.talk.data.repository.preference.SharedPreferenceRepository
 import com.nsd.talk.model.RegisterModel
 import com.nsd.talk.util.Constant
 import kotlinx.coroutines.launch
